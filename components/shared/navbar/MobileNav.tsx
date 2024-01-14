@@ -78,7 +78,7 @@ const MobileNav = () => {
             alt="Student gpa tracking"
           />
           <p className="h2-bold text-dark100_light900 font-spaceGrotesk">
-            STNT <span className="text-primary-500">Tracking</span>
+            GPA <span className="text-primary-500">Tracking</span>
           </p>
         </Link>
         <div>
