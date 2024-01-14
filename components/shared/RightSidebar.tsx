@@ -20,8 +20,8 @@ const hotQuestions = [
 const popularTags = [
   { _id: "1", name: "javascripts", totalQuestions: 5 },
   { _id: "2", name: "react", totalQuestions: 7 },
-  { _id: "3", name: "nextjs", totalQuestions: 8 },
-  { _id: "4", name: "django", totalQuestions: 5 },
+  // { _id: "3", name: "nextjs", totalQuestions: 8 },
+  // { _id: "4", name: "django", totalQuestions: 5 },
 ];
 const RightSidebar = () => {
   return (

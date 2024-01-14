@@ -47,7 +47,7 @@ import Link from "next/link";
 export default async function Home() {
   const results = await getQuestions({});
 
-  console.log(results.questions.map((q) => q.author));
+  console.log(results.questions.map((q) => q.author.name));
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">

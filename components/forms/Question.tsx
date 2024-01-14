@@ -62,7 +62,7 @@ const Question = ({ mongoUserId }: Props) => {
       });
 
       // navigate to the home page;
-      router.push("/");
+      router.push("/discussion");
     } catch (error) {
     } finally {
       setIsSubmitting(false);
