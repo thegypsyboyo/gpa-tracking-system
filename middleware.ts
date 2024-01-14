@@ -12,9 +12,9 @@ export default authMiddleware({
         '/profile/:id',
         '/discussion',
     ],
-    ignoredRoutes: [
-        '/api/webhook',
-    ]
+    // ignoredRoutes: [
+    //     '/api/webhook',
+    // ]
 });
 
 export const config = {
