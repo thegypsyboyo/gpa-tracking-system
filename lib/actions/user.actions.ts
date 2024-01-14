@@ -4,7 +4,7 @@ import User from "@/database/user.model";
 import { connectToDatabase } from "../mongoose"
 import { CreateUserParams, DeleteUserParams, UpdateUserParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
-import Question from "@/database/question.model";
+// import Question from "@/database/question.model";
 
 export async function getUserById(params: any) {
     try {
@@ -68,8 +68,9 @@ export async function deleteUser(params: DeleteUserParams) {
 
         }
 
-        // get user question ids; 
-        const userQuestionIds = await Question.find({ author: user._id }).distinct('_id');
+        // get user question ids;
+
+        // const userQuestionIds = await Question.find({ author: user._id }).distinct('_id');
 
         // TODO: delete user answers, comments, etc.
 
