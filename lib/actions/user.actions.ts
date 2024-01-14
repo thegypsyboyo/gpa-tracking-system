@@ -65,7 +65,6 @@ export async function deleteUser(params: DeleteUserParams) {
 
             // Delete user from database
             // and questions, answers, commets,
-
         }
 
         // get user question ids;
