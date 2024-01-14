@@ -10,8 +10,7 @@ export async function POST(req: Request) {
     // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
 
     //   TODO: Add your webhooks to secret .env file
-    // const WEBHOOK_SECRET = process.env.NEXT_CLERK_WEBHOOK_SECRET
-    const WEBHOOK_SECRET = "whsec_xUBSeRVrVV8ok2XJcF/Xlxb0WInwItdQ"
+    const WEBHOOK_SECRET = process.env.NEXT_CLERK_WEBHOOK_SECRE
 
     if (!WEBHOOK_SECRET) {
         throw new Error('Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local')
