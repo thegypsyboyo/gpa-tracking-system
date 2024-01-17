@@ -2,8 +2,14 @@
 
 import User from "@/database/user.model";
 import { connectToDatabase } from "../mongoose"
-import { CreateUserParams, DeleteUserParams, UpdateUserParams } from "./shared.types";
+import {
+    CreateUserParams,
+    DeleteUserParams,
+    UpdateUserParams
+} from "./shared.types";
+
 import { revalidatePath } from "next/cache";
+import Question from "@/database/question.model";
 // import Question from "@/database/question.model";
 
 export async function getUserById(params: any) {
@@ -23,7 +29,6 @@ export async function getUserById(params: any) {
 }
 
 export async function createUser(userData: CreateUserParams) {
-
     try {
         connectToDatabase();
 
@@ -31,53 +36,62 @@ export async function createUser(userData: CreateUserParams) {
 
         return newUser;
     } catch (error) {
-        console.log(error);
+        console.error(`❌ ${error} ❌`);
         throw error;
     }
 }
 
 export async function updateUser(params: UpdateUserParams) {
-
     try {
         connectToDatabase();
 
-        const { clerkId, updateData, path } = params
+        const { clerkId, updateData, path } = params;
 
-        await User.findOneAndUpdate({ clerkId }, updateData, {
-            new: true,
-        });
-        revalidatePath(path)
+        await User.findOneAndUpdate({ clerkId }, updateData, { new: true });
+
+        revalidatePath(path);
     } catch (error) {
-        console.log(error);
+        console.error(`❌ ${error} ❌`);
         throw error;
     }
 }
 
 export async function deleteUser(params: DeleteUserParams) {
-
     try {
         connectToDatabase();
 
         const { clerkId } = params;
         const user = await User.findOneAndDelete({ clerkId });
-        if (!user) {
-            throw new Error('User not found');
 
-            // Delete user from database
-            // and questions, answers, commets,
+        if (!user) {
+            throw new Error('❌🔍 User not found 🔍❌');
         }
 
-        // get user question ids;
+        /**
+         *  Delete user from database
+         *  It means questions, answers, commnets, etc
+         *
+         */
+        // get user question ids
 
-        // const userQuestionIds = await Question.find({ author: user._id }).distinct('_id');
+        // ?  const userQuestionIds = await Question.find({
+        // ?    author: user._id
+        // ?  }).distinct('_id');
 
-        // TODO: delete user answers, comments, etc.
+        // ⬆️ distinct | create a distinct query, meaning return
+        // distinct values of the given field that mathces this filter
 
+        // delete user questions
+        await Question.deleteMany({ author: user._id });
+
+        // TODO: delete user answers, comments, etc
+
+        // delete user
         const deletedUser = await User.findByIdAndDelete(user._id);
 
         return deletedUser;
     } catch (error) {
-        console.log(error);
+        console.error(`❌ ${error} ❌`);
         throw error;
     }
 }
