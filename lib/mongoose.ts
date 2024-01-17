@@ -1,27 +1,25 @@
-import mongoose from "mongoose"
+import mongoose from 'mongoose';
 
 let isConnected: boolean = false;
 
 export const connectToDatabase = async () => {
-    mongoose.set('strictQuery', true);
+    mongoose.set('strictQuery', true); // is going to prevent unknown field queries
 
     if (!process.env.MONGODB_URL) {
-        return console.log('MISSING MONGODB_URL');
+        return console.error('⛔ Missing MONGODB_URL ⛔');
     }
 
     if (isConnected) {
-        return console.log('MongoDB is aleady connected');
+        return console.log('🍃 MongoDB is already connected 🍃');
     }
 
     try {
-        await mongoose.connect(process.env.MONGODB_URL, {
+        await mongoose.connect(process.env.MONGODB_URL, { dbName: 'devflow' });
 
-            dbName: 'devflow',
-        })
         isConnected = true;
 
-        console.log('MongoDB is connected');
+        console.log('🍃 MongoDB is connected 🍃');
     } catch (error) {
-        console.log('MongoDB connection failed', error)
+        console.error(`❌ ${error} ❌`);
     }
-}
+};

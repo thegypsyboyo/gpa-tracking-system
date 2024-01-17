@@ -19,7 +19,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "gpa tracking system",
+  title: "Home | GPA Tracking System",
   description:
     "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium, vel!",
   icons: "/assets/images/site-logo.svg",
